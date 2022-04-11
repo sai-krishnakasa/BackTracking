@@ -1,0 +1,46 @@
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+
+The solution set must not contain duplicate subsets. Return the solution in any order.
+Example 1:
+Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+Example 2:
+
+Input: nums = [0]
+Output: [[],[0]]
+Constraints:
+
+1 <= nums.length <= 10
+-10 <= nums[i] <= 10
+All the numbers of nums are unique.
+
+
+#include<bits/stdc++.h>
+#include<vector>
+#include<map>
+using namespace std;
+void subseq(int index,int n,vector<int>ds,int arr[]){
+	if(index==n){
+		for(auto it:ds){
+			cout<<it<<" ";
+		}
+		cout<<" \n";
+		return;
+	}
+	ds.push_back(arr[index]);
+	subseq(index+1,n,ds,arr);
+	ds.pop_back();
+	subseq(index+1,n,ds,arr);
+}
+int main(){
+	int n;
+	cin>>n;
+	vector<int>ds;
+	int arr[n];
+	for(int i=0;i<n;i++){
+		cin>>arr[i];
+	}
+	
+	subseq(0,n,ds,arr);
+
+}
